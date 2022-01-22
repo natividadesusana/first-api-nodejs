@@ -1,4 +1,5 @@
 const express = require('express')
+const res = require('express/lib/response')
 const routes = express.Router()
 
 let db = [
@@ -23,4 +24,17 @@ routes.post('/add', (req, res) => {
     return res.json(body)
 })
 
-module.exports - routes
+routes.delete('/:id', (req, res) => {
+    const id = req.params.id
+
+    let newDB = db.filter(item => {
+        if (!item[id])
+        return item
+    })
+
+db = newDB
+
+return res.send(newDB)
+})
+
+module.exports = routes
